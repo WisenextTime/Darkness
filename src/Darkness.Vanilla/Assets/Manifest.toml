@@ -1,0 +1,6 @@
+loader = "DotnetLoader"
+id = "Darkness"
+name = "Darkness"
+version = "1.0.0"
+author = "Wisenext Time"
+description = "The vanilla pack of darkness."

@@ -1,6 +1,5 @@
 ﻿using Darkness.Core.Contents;
-using Darkness.Core.Network;
-namespace Darkness.Core.Mods
+namespace Darkness.Core.Mods.Loaders
 {
 	public interface IRegistry
 	{

@@ -3,6 +3,7 @@
     <Project Path="src/Darkness.Client/Darkness.Client.csproj" />
     <Project Path="src/Darkness.Core/Darkness.Core.csproj" />
     <Project Path="src/Darkness.Launcher/Darkness.Launcher.csproj" />
+    <Project Path="src/Darkness.ScriptMod/Darkness.ScriptMod.fsproj" />
     <Project Path="src/Darkness.Server/Darkness.Server.csproj" />
   </Folder>
   <Folder Name="/Launchers/">
