@@ -1,5 +1,5 @@
-﻿using Darkness.Core.Mods.Loaders;
-using Darkness.Core.Mods.Parts;
+﻿using Darkness.Core.Events;
+using Darkness.Core.Mods.Entrys;
 using Darkness.Core.Types;
 using Darkness.Vanilla.Contents;
 namespace Darkness.Vanilla;
@@ -8,9 +8,18 @@ namespace Darkness.Vanilla;
 public class Vanilla
 {
 	[ModEntry]
-	public static void Initialize(ModContextProvider context)
+	public static void Initialize(EventBus eventBus)
 	{
-		context.RegisterType<Tile>();
-		Tiles.RegisterTiles();
+		
+	}
+
+	private static void RegisterTypes()
+	{
+		
+	}
+	
+	private static void RegisterContents()
+	{
+		
 	}
 }

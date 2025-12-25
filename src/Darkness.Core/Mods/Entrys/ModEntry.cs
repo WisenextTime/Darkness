@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Darkness.Core.Mods.Parts
+namespace Darkness.Core.Mods.Entrys
 {
 	[AttributeUsage(AttributeTargets.Class, Inherited = false)]
 	public class ModClassAttribute : Attribute

@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Darkness.Core.Mods.Entrys;
 using Darkness.Core.Mods.Loaders;
-using Darkness.Core.Mods.Parts;
 namespace Darkness.Launcher.Mods
 {
 	public class DotNetModContainer(Assembly assembly, ModManifest modManifest, string assetsPath)
@@ -15,15 +14,7 @@ namespace Darkness.Launcher.Mods
 			var modEntry = modClass
 				.GetMethods(BindingFlags.Static | BindingFlags.Public)
 				.First(m => m.GetCustomAttributes(typeof(ModEntryAttribute), false).Length != 0);
-			modEntry.Invoke(
-				null,
-				[
-					new ModContextProvider(
-						Manifest.Id,
-						GameLauncher.GetInstance().Server,
-						GameLauncher.GetInstance().Client,
-						GameLauncher.GetInstance().EventBus)
-				]);
+			modEntry.Invoke(null, [GameLauncher.GetInstance().EventBus]);
 			return true;
 		}
 	}

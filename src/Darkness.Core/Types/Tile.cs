@@ -1,11 +1,9 @@
 ﻿using Darkness.Core.Contents;
 namespace Darkness.Core.Types
 {
-	public class Tile : ContentBase
+	public class Tile(string id) : IContent(id)
+
 	{
-		public Tile(string id) : base(id)
-		{
-			
-		}
+
 	}
 }

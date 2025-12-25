@@ -6,9 +6,10 @@ using Darkness.Launcher.Mods;
 using Tomlyn;
 namespace Darkness.Launcher;
 
-public class ModManager(ILauncher GameLauncher)
+public class ModManager
 {
-	private Dictionary<string, ModContainer> _mods = [];
+	private readonly Dictionary<string, ModContainer> _mods = [];
+
 	internal void LoadDll(string dllPath,string manifestPath, string assetsPath)
 	{
 		using var manifestStream = new FileStream(manifestPath, FileMode.Open);

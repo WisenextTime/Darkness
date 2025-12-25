@@ -1,0 +1,4 @@
+﻿namespace Darkness.Core.Events
+{
+	
+}

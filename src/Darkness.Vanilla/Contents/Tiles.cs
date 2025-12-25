@@ -2,8 +2,5 @@
 
 public class Tiles
 {
-	public static void RegisterTiles()
-	{
-		
-	}
+	
 }

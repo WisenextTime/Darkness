@@ -1,7 +1,7 @@
 ﻿using Darkness.Core;
-using Darkness.Core.Mods.Events;
+using Darkness.Core.Events;
 using Darkness.Core.Network;
-using Darkness.Launcher.Events;
+using Darkness.Launcher.Mods;
 using Darkness.Launcher.Utils;
 namespace Darkness.Launcher
 {
@@ -14,7 +14,8 @@ namespace Darkness.Launcher
 		}
 		public IServerSide Server { get; }
 		public IClientSide? Client { get; }
-		public IEventBus EventBus { get;private set; }
+		
+		public EventBus EventBus { get; }
 		public bool IsRunning { get; private set; }
 		private ArgumentList? _arguments;
 		public GameLauncher(IServerSide server, IClientSide? client = null)
@@ -22,7 +23,7 @@ namespace Darkness.Launcher
 			if(_instance is not null) throw new InvalidOperationException("There is already a launcher running.");
 			Server = server;
 			Client = client;
-			EventBus = new EventBus(exception => server.LogMessage(exception.Message, "error"));
+			EventBus = new EventBus();
 			_instance = this;
 		}
 		public ArgumentList GetArguments()
@@ -35,10 +36,9 @@ namespace Darkness.Launcher
 			IsRunning = true;
 			//Parse args
 			_arguments = new ArgumentList(args);
-			
 			//Init mod manager
 			Server.LogMessage("Init mod loader......");
-			var modManager = new ModManager(this);
+			var modManager = new ModManager();
 			Server.LogMessage("Load vanilla dll......");
 			modManager.LoadDll("Darkness.Vanilla.dll", "Assets/Manifest.toml", "Assets");
 			Server.LogMessage("Load mods......");
