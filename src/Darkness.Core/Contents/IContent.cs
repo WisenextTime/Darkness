@@ -1,7 +1,6 @@
-﻿namespace Darkness.Core.Contents
+﻿namespace Darkness.Core.Contents;
+
+public class IContent(string id)
 {
-	public class IContent(string id)
-	{
-		public string Id { get; } = id;
-	}
+	public string Id { get; } = id;
 }

@@ -1,7 +1,6 @@
-﻿namespace Darkness.Server.Services
+﻿namespace Darkness.Server.Services;
+
+public interface IConsoleLogger
 {
-	public interface IConsoleLogger
-	{
-		public void LogMessage(string message, string type = "log");
-	}
+	public void LogMessage(string message, string type = "log");
 }

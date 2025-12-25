@@ -1,12 +1,11 @@
 ﻿using Darkness.Core.Network;
 using Darkness.Server.Services;
-namespace Darkness.Server
+namespace Darkness.Server;
+
+public class GameServer(IConsoleLogger logger) : IServerSide
 {
-	public class GameServer(IConsoleLogger logger) : IServerSide
+	public void LogMessage(string message, string type = "log")
 	{
-		public void LogMessage(string message, string type = "log")
-		{
-			logger.LogMessage(message, type);
-		}
+		logger.LogMessage(message, type);
 	}
 }

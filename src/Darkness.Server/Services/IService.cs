@@ -1,7 +1,6 @@
-﻿namespace Darkness.Server.Services
+﻿namespace Darkness.Server.Services;
+
+public interface IService
 {
-	public interface IService
-	{
 	
-	}
 }

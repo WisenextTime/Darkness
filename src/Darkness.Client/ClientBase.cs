@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Darkness.Core.Network;
-namespace Darkness.Client
+namespace Darkness.Client;
+
+public class ClientBase : IClientSide
 {
-	public class ClientBase : IClientSide
-	{
 		
-	}
 }

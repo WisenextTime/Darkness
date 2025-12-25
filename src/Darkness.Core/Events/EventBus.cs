@@ -9,17 +9,19 @@ public class EventBus
 
 	private readonly ConcurrentDictionary<Type, List<Delegate>> _handlers = new();
 
-	public void Publish<TEvent>(TEvent @event)
+	public List<Exception> Publish<TEvent>(TEvent @event)
 	{
+		var exceptions =  new List<Exception>();
 		if(@event == null) throw new ArgumentNullException(nameof(@event));
 		var type = typeof(TEvent);
-		if (!_handlers.TryGetValue(type, out var handlers)) return;
+		if (!_handlers.TryGetValue(type, out var handlers)) return  exceptions;
 		var list = handlers.ToList();
 		foreach (var handler in list)
 		{
 			try { ((Action<TEvent>)handler)(@event); }
-			catch (Exception) { /* ignored */ }
+			catch (Exception e) { exceptions.Add(e); }
 		}
+		return exceptions;
 	}
 	public IDisposable Subscribe<TEvent>(Action<TEvent> handler) where TEvent : class
 	{

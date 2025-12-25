@@ -1,7 +1,6 @@
-﻿namespace Darkness.Core.Mods.Loaders
+﻿namespace Darkness.Core.Mods.Loaders;
+
+public interface IRegistry
 {
-	public interface IRegistry
-	{
 		
-	}
 }

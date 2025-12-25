@@ -1,7 +1,6 @@
-﻿namespace Darkness.Core.Network
+﻿namespace Darkness.Core.Network;
+
+public interface IServicesSide
 {
-	public interface IServicesSide
-	{
 		
-	}
 }

@@ -1,7 +1,6 @@
-﻿namespace Darkness.Core.Network
+﻿namespace Darkness.Core.Network;
+
+public interface IServerSide : IServicesSide
 {
-	public interface IServerSide : IServicesSide
-	{
-		void LogMessage(string message, string type = "log");
-	}
+	void LogMessage(string message, string type = "log");
 }
