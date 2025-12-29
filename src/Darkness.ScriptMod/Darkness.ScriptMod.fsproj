@@ -9,4 +9,13 @@
       <ProjectReference Include="..\Darkness.Core\Darkness.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Include="Toml\Models.fs" />
+      <Compile Include="Toml\TomlParser.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Tomlyn" Version="0.19.0" />
+    </ItemGroup>
+
 </Project>

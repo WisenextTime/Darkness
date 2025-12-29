@@ -6,3 +6,8 @@ public class TypeRegisteringEvent(ContentManager manager)
 {
 	public void Register<T>() where T : IContent => manager.RegisterType<T>();
 }
+
+public class ContentRegisteringEvent(ContentManager manager)
+{
+	public void Register<T>(T content) where T : IContent => manager.RegisterContent(content);
+}

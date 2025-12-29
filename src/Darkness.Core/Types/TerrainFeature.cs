@@ -2,17 +2,9 @@
 using Darkness.Core.Contents;
 namespace Darkness.Core.Types;
 
-public class Tile(string id) : IContent(id)
+public class TerrainFeature(string id) : IContent(id)
 {
 	public string Texture { get; init; } = $"Textures.Tiles.{id}.png";
-	public TileType Type { get; init; } = TileType.Land;
+	public bool Passable { get; init; } = true;
 	public Color Color { get; init; } = Color.White;
-	
-	public static Tile Empty { get; } = new("Empty");
-}
-public enum TileType
-{
-	Land,
-	Liquid,
-	Void,
 }

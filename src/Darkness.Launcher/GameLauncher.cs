@@ -17,8 +17,10 @@ public class GameLauncher : ILauncher
 	}
 	public IServerSide Server { get; }
 	public IClientSide? Client { get; }
-		
 	public EventBus EventBus { get; }
+
+	public ModManager ModManager { get; } = new();
+	public ContentManager ContentManager { get; } = new();
 	public bool IsRunning { get; private set; }
 	private ArgumentList? _arguments;
 	public GameLauncher(IServerSide server, IClientSide? client = null)
@@ -41,17 +43,18 @@ public class GameLauncher : ILauncher
 		_arguments = new ArgumentList(args);
 		//Init mod manager
 		Server.LogMessage("Init mod loader......");
-		var modManager = new ModManager();
-		var contentManager = new ContentManager();
 		Server.LogMessage("Load vanilla dll......");
-		modManager.LoadDll("Darkness.Vanilla.dll", "Assets/Manifest.toml", "Assets");
+		ModManager.LoadDll("Darkness.Vanilla.dll", "Assets/Manifest.toml", "Assets");
 		Server.LogMessage("Load mods......");
 		/* TODO:
 		 Load Mods
 		 */
-		modManager.LoadContents();
+		ModManager.LoadContents();
 		Server.LogMessage("Register types......");
-		var exceptions = EventBus.Publish(new TypeRegisteringEvent(contentManager));
+		var exceptions = EventBus.Publish(new TypeRegisteringEvent(ContentManager));
+		LogExceptions(exceptions);
+		Server.LogMessage("Register contents......");
+		exceptions = EventBus.Publish(new ContentRegisteringEvent(ContentManager));
 		LogExceptions(exceptions);
 	}
 
