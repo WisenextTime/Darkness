@@ -2,7 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using Darkness.Core.Contents;
+using Darkness.Core.Types;
+using Darkness.Core.World;
 using Darkness.Server;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using Spectre.Console;
 
 namespace Darkness.Launcher.Server;
@@ -54,7 +58,7 @@ internal class Program
 		{
 			var input = AnsiConsole.Prompt(
 				new SelectionPrompt<string>()
-					.Title("What would you like to do?")
+					.Title("Choose a content type")
 					.AddChoices(types.Keys)
 					.AddChoices("Back")
 			);
@@ -72,7 +76,28 @@ internal class Program
 
 	static void GenerateTestMap()
 	{
-	
+		var seed = AnsiConsole.Ask<int>("Enter the seed of the test map");
+		AnsiConsole.WriteLine("Generating test map...");
+		var world = new Map(seed, _launcher.ContentManager.GetContents<Planet>()["Nyx"]!);
+		const int chunks = 10;
+		for (var x = 0; x < chunks; x++)
+		{
+			for (var y = 0; y < chunks; y++)
+			{
+				world.GenerateChunk(x, y);
+			}
+		}
+		var bitMap = new Image<Rgba32>(128*chunks, 128*chunks);
+		for (var x = 0; x < 128*chunks; x++)
+		{
+			for (var y = 0; y < 128*chunks; y++)
+			{
+				var tileId = world.Chunks[new System.Drawing.Point(x / 128, + y / 128)].Tiles[x%128, y%128].Id;
+				var color = _launcher.ContentManager.GetContents<Tile>()[tileId]!.Color;
+				bitMap[x,y] = new Rgba32(color.R, color.G, color.B, color.A);
+			}
+			bitMap.SaveAsPng("Output.png");
+		}
 	}
 
 	static void PrintContents(IDictionary<string, IContent> contents)

@@ -9,6 +9,12 @@ public readonly struct Chunk()
 
 	public void Initialize()
 	{
-		Tiles.Initialize();
+		for (var x = 0; x < ChunkSize; x++)
+		{
+			for (var y = 0; y < ChunkSize; y++)
+			{
+				Tiles[x, y] = new TileData { Tags = [] };
+			}
+		}
 	}
 }

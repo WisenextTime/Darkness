@@ -33,4 +33,11 @@ public class ContentManager
 	{
 		return _contents[typeof(T)]?.ToDictionary(k => k.Key, v => (T?)v.Value) ?? new Dictionary<string, T?>();
 	}
+
+	public T GetContent<T>(string id) where T : IContent
+	{
+		if (!_contents.ContainsKey(typeof(T))) throw new ContentTypeNotExistingException<T>();
+		var content = _contents[typeof(T)][id];
+		return (T)content;
+	}
 }

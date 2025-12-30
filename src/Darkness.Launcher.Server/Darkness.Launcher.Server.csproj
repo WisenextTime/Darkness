@@ -9,6 +9,10 @@
     <ItemGroup>
       <ProjectReference Include="..\Darkness.Launcher\Darkness.Launcher.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    </ItemGroup>
     
     <Target Name="Orgabizing folder" AfterTargets="Build">
         <MakeDir Directories="$(OutputPath)Mods"/>
